@@ -37,7 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () async {
               _dioCacheManager = DioCacheManager(CacheConfig());
 
-              Options _cacheOptions = buildCacheOptions(Duration(days: 7));
+              Options _cacheOptions = buildCacheOptions(Duration(days: 7),
+                  forceRefresh: true, primaryKey: 'myPrimaryKey');
               Dio _dio = Dio();
               _dio.interceptors.add(_dioCacheManager.interceptor);
               Response response = await _dio.get(
